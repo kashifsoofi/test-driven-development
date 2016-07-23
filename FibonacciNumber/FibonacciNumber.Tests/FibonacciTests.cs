@@ -15,7 +15,7 @@ namespace FibonacciNumber.Tests
             int actual = Fibonacci.Fib(n);
 
             // assert
-            Assert.That(0, Is.EqualTo(actual));
+            Assert.That(actual, Is.EqualTo(0));
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace FibonacciNumber.Tests
             int actual = Fibonacci.Fib(n);
 
             // assert
-            Assert.That(1, Is.EqualTo(actual));
+            Assert.That(actual, Is.EqualTo(1));
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace FibonacciNumber.Tests
             int actual = Fibonacci.Fib(n);
 
             // assert
-            Assert.That(1, Is.EqualTo(actual));
+            Assert.That(actual, Is.EqualTo(1));
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace FibonacciNumber.Tests
             int actual = Fibonacci.Fib(n);
 
             // assert
-            Assert.That(2, Is.EqualTo(actual));
+            Assert.That(actual, Is.EqualTo(2));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace FibonacciNumber.Tests
             int actual = Fibonacci.Fib(n);
 
             // assert
-            Assert.That(3, Is.EqualTo(actual));
+            Assert.That(actual, Is.EqualTo(3));
         }
     }
 }
