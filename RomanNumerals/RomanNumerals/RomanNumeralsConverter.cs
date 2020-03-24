@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RomanNumerals
+﻿namespace RomanNumerals
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public static class RomanNumeralsConverter
     {
         private static Dictionary<int, string> _valueSymbols = new Dictionary<int, string>

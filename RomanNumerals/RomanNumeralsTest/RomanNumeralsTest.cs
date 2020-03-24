@@ -1,80 +1,78 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RomanNumerals;
-
-namespace RomanNumeralsTest
+﻿namespace RomanNumeralsTest
 {
-    [TestFixture]
+    using System;
+    using FluentAssertions;
+    using RomanNumerals;
+    using Xunit;
+
     public class RomanNumeralsTest
     {
-        [Test]
+        [Fact]
         public void FromInteger_Zero_ShouldGenerate_Exception() // Or we can throw exception
         {
-            Assert.That(() => RomanNumeralsConverter.FromInteger(0),
-                        Throws.TypeOf<ArgumentOutOfRangeException>());
+            Action action = () => RomanNumeralsConverter.FromInteger(0);
+
+            action.Should().Throw<ArgumentOutOfRangeException>();
         }
 
-        [Test]
+        [Fact]
         public void FromInteger_One_ShouldReturn_I()
         {
             string result = RomanNumeralsConverter.FromInteger(1);
-            Assert.AreEqual("I", result);
+            result.Should().Be("I");
         }
 
-        [Test]
+        [Fact]
         public void FromInteger_Two_ShouldReturn_II()
         {
             string result = RomanNumeralsConverter.FromInteger(2);
-            Assert.AreEqual("II", result);
+            result.Should().Be("II");
         }
 
         // Basic Cases
-        [TestCase(3, "III")]
-        [TestCase(5, "V")]
-        [TestCase(10, "X")]
-        [TestCase(50, "L")]
-        [TestCase(100, "C")]
-        [TestCase(500, "D")]
-        [TestCase(1000, "M")]
+        [InlineData(3, "III")]
+        [InlineData(5, "V")]
+        [InlineData(10, "X")]
+        [InlineData(50, "L")]
+        [InlineData(100, "C")]
+        [InlineData(500, "D")]
+        [InlineData(1000, "M")]
         // Special Cases
-        [TestCase(4, "IV")]
-        [TestCase(9, "IX")]
-        [TestCase(40, "XL")]
-        [TestCase(90, "XC")]
-        [TestCase(400, "CD")]
-        [TestCase(900, "CM")]
+        [InlineData(4, "IV")]
+        [InlineData(9, "IX")]
+        [InlineData(40, "XL")]
+        [InlineData(90, "XC")]
+        [InlineData(400, "CD")]
+        [InlineData(900, "CM")]
         // Further Test Cases
-        [TestCase(25, "XXV")]
-        [TestCase(49, "XLIX")]
-        [TestCase(93, "XCIII")]
-        [TestCase(94, "XCIV")]
-        [TestCase(99, "XCIX")]
-        [TestCase(999, "CMXCIX")]
-        [TestCase(1954, "MCMLIV")]
-        [TestCase(1990, "MCMXC")]
-        [TestCase(2014, "MMXIV")]
-        [TestCase(3999, "MMMCMXCIX")]
-        [Test]
+        [InlineData(25, "XXV")]
+        [InlineData(49, "XLIX")]
+        [InlineData(93, "XCIII")]
+        [InlineData(94, "XCIV")]
+        [InlineData(99, "XCIX")]
+        [InlineData(999, "CMXCIX")]
+        [InlineData(1954, "MCMLIV")]
+        [InlineData(1990, "MCMXC")]
+        [InlineData(2014, "MMXIV")]
+        [InlineData(3999, "MMMCMXCIX")]
+        [Theory]
         public void FromInteger_Number_ShouldReturn_RomanNumerals(int valueToConvert, string expected)
         {
             string actual = RomanNumeralsConverter.FromInteger(valueToConvert);
-            Assert.AreEqual(expected, actual);
+            actual.Should().Be(expected);
         }
 
-        [TestCase(4000)]
-        [TestCase(4001)]
-        [TestCase(5000)]
-        [TestCase(6001)]
-        [TestCase(10001)]
-        [Test]
+        [InlineData(4000)]
+        [InlineData(4001)]
+        [InlineData(5000)]
+        [InlineData(6001)]
+        [InlineData(10001)]
+        [Theory]
         public void FromInteger_Number4000andAbove_ShouldReturn_EmptyString(int valueToConvert) // Or we can throw exception
         {
-            Assert.That(() => RomanNumeralsConverter.FromInteger(valueToConvert),
-                        Throws.TypeOf<ArgumentOutOfRangeException>());
+            Action action = () => RomanNumeralsConverter.FromInteger(valueToConvert);
+
+            action.Should().Throw<ArgumentOutOfRangeException>();
         }
     }
 }
